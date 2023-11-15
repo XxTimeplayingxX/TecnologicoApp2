@@ -1,4 +1,4 @@
-﻿namespace TecnologicoApp
+﻿namespace TecnologicoApp.Views
 {
     public partial class MainPage : ContentPage
     {
