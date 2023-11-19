@@ -3,7 +3,7 @@
     x:Class="TecnologicoApp.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-     xmlns:local="clr-namespace:TecnologicoApp.ViewModels">
+    xmlns:local="clr-namespace:TecnologicoApp.ViewModels">
     <ContentPage.BindingContext>
         <local:MainPageViewModel />
     </ContentPage.BindingContext>
@@ -13,24 +13,31 @@
             Padding="30,0"
             Spacing="25"
             VerticalOptions="StartAndExpand">
-            <Image Source="usuariologin3.png"
-                   Margin="0, 30, 0, 0"
-                   HorizontalOptions="Center"
-                   WidthRequest="100"/>
+            <Image
+                Margin="0,30,0,0"
+                HorizontalOptions="Center"
+                Source="usuariologin3.png"
+                WidthRequest="100" />
             <StackLayout>
                 <Entry
+                    x:Name="EmailEntry"
                     HorizontalOptions="Center"
+                    Keyboard="Email"
                     Placeholder="Email"
                     PlaceholderColor="Gray"
+                    Text="{Binding Usuario.Email}"
                     TextColor="Black"
                     WidthRequest="333" />
-                <Entry 
+                <Entry
+                    x:Name="PasswordEntry"
                     HorizontalOptions="Center"
+                    IsPassword="True"
                     Placeholder="Contraseña"
                     PlaceholderColor="Gray"
+                    Text="{Binding Usuario.Password}"
                     TextColor="Black"
-                    WidthRequest="333"  />
-                <Button Text="Registro" />
+                    WidthRequest="333" />
+                <Button Command="{Binding LoginCommand}" Text="Iniciar" />
             </StackLayout>
         </StackLayout>
     </ScrollView>
