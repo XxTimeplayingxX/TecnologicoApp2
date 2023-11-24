@@ -37,16 +37,37 @@ namespace TecnologicoApp.ViewModels
                 await Util.ShowToastAsync("Ingrese una Contraseña Válida");
                 return;
             }
+            List<string> ListaUsuario = new List<string>
+            {
+                "daviquesan@gmail.com",
+                "dolvi123@gmail.com",
+                "ofalconez1978@gmail.com",
+                "d1sanchez@gmail.com"
+            };
 
-            Settings.IsAuthenticated = true;
+            bool estaEnLaLista = ListaUsuario.Contains(Usuario.Email);
 
-            await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
+            if (estaEnLaLista)
+            {
+                Settings.IsAuthenticated = true;
+                await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
+                
+            }
+            else
+            {
+                await Util.ShowToastAsync("Correo No Registrado");
+            }
+
+
+            //Settings.IsAuthenticated = true;
+
+            
         }
 
         private bool IsAValidEmail(string email)
         {
            
-            //return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
