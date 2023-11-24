@@ -13,7 +13,7 @@
             x:Name="WelcomeLabel"
             FontSize="30"
             HorizontalOptions="Center"
-            Text="{Binding Usuario}"
+            Text="{Binding Usuario.Email}"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

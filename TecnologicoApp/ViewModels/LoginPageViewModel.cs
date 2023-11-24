@@ -8,6 +8,7 @@ namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
+        public static WelcomePage Instance {get; set;} = new WelcomePage();
         #region "Properties"
 
         public UsuarioRegistro Usuario { get; set; }
@@ -20,6 +21,7 @@ namespace TecnologicoApp.ViewModels
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
+            OtraPagina();
         }
 
         #region "Logic"
@@ -42,7 +44,9 @@ namespace TecnologicoApp.ViewModels
                 "daviquesan@gmail.com",
                 "dolvi123@gmail.com",
                 "ofalconez1978@gmail.com",
-                "d1sanchez@gmail.com"
+                "d1sanchez@gmail.com",
+                "david@istlcg.com",
+                "gus@mail.com"
             };
 
             bool estaEnLaLista = ListaUsuario.Contains(Usuario.Email);
@@ -62,6 +66,10 @@ namespace TecnologicoApp.ViewModels
             //Settings.IsAuthenticated = true;
 
             
+        }
+        public void OtraPagina()
+        {
+            string mensaje = $"Bienvenido {Usuario.Email}";
         }
 
         private bool IsAValidEmail(string email)
