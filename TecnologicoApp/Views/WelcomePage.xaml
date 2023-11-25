@@ -11,9 +11,9 @@
     <VerticalStackLayout VerticalOptions="Center">
         <Label
             x:Name="WelcomeLabel"
-            FontSize="30"
+            FontSize="20"
             HorizontalOptions="Center"
-            Text="{Binding Email}"
+            Text="{Binding Email, StringFormat='Bienvenido {0}'}"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
