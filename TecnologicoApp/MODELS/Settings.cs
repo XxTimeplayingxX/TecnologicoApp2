@@ -13,6 +13,13 @@ namespace TecnologicoApp.MODELS
             get => Preferences.Default.Get(nameof(IsAuthenticated), false);
             set => Preferences.Default.Set(nameof(IsAuthenticated), value);
         }
+        public static string Email
+        {
+            //Valor por defecto
+            get => Preferences.Default.Get(nameof(Email), string.Empty);
+            //Valor que se va a mandar
+            set => Preferences.Default.Set(nameof(Email), value);
+        }
 
         //public static bool IsAuthenticated { get; set; }
     }
