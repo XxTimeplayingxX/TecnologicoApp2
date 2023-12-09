@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Maui.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,17 @@ namespace TecnologicoApp.MODELS
             get => Preferences.Default.Get(nameof(Email), string.Empty);
             //Valor que se va a mandar
             set => Preferences.Default.Set(nameof(Email), value);
+        }
+
+        public static string RegistroEmail
+        {
+            get => Preferences.Default.Get(nameof(RegistroEmail), string.Empty);
+            set => Preferences.Default.Set(nameof(RegistroEmail), value);
+        }
+        public static string RegistroPassword
+        {
+            get => Preferences.Default.Get(nameof(RegistroPassword), string.Empty);
+            set => Preferences.Default.Set(nameof(RegistroPassword), value);
         }
 
         //public static bool IsAuthenticated { get; set; }

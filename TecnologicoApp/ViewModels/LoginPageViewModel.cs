@@ -13,6 +13,7 @@ namespace TecnologicoApp.ViewModels
         public UsuarioRegistro Usuario { get; set; }
 
         public Command LoginCommand { get; set; }
+        public Command RegisterCommando { get; set; }
 
         #endregion
 
@@ -63,6 +64,7 @@ namespace TecnologicoApp.ViewModels
 
 
 
+
             //List<string> ListaUsuario = new List<string>
             //{
             //    "daviquesan@gmail.com",
@@ -90,6 +92,10 @@ namespace TecnologicoApp.ViewModels
             //Settings.IsAuthenticated = true;
 
 
+        }
+        private async void GotoSignupPageAsync()
+        {
+            await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
         }
         public void OtraPagina()
         {

@@ -8,7 +8,7 @@ namespace TecnologicoApp
         {
             InitializeComponent();
 
-            Routing.RegisterRoute(nameof(WelcomePage), typeof(WelcomePage));
+            Routing.RegisterRoute(nameof(Views.SignupPage), typeof(Views.SignupPage));
         }
     }
 }
