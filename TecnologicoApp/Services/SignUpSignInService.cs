@@ -16,6 +16,9 @@ namespace TecnologicoApp.Services
             {
                 return result;
             }
+            string ejemplo1 = null;
+            string ejemplo2 = string.Empty;
+            string ejemplo3 = " ";
             
             Settings.RegistroEmail = usuario.Email;
             Settings.RegistroPassword = usuario.Password;
