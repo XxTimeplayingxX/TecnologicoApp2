@@ -2,33 +2,47 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TecnologicoApp.MODELS;
+using TecnologicoApp.Services;
+using TecnologicoApp.Services.Interfaces;
 using TecnologicoApp.Views;
 
 namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
+        private readonly ISignUpSignInService signUpSignInService;
         #region "Properties"
 
         public UsuarioRegistro Usuario { get; set; }
 
         public Command LoginCommand { get; set; }
-        public Command RegisterCommando { get; set; }
+        public Command RegisterCommand { get; set; }
 
         #endregion
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(ISignUpSignInService signUpSignInService)
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
-            OtraPagina();
+            RegisterCommand = new Command(GotoSignupPageAsync);
+            //OtraPagina();
+            this.signUpSignInService = signUpSignInService;
         }
 
         #region "Logic"
-
+        private async void SignUpAsync()
+        {
+            var result = await signUpSignInService.SignUpAsync(Usuario);
+            if(result == false)
+            {
+                await Util.ShowToastAsync("No se registro el usuario");
+                return;
+            }
+            await Util.ShowToastAsync($"Usuario {Usuario.Email} registrado exitosamente");
+        }
         private async void LoginAsync()
         {
-            if (string.IsNullOrEmpty(Usuario.Email) || !IsAValidEmail(Usuario.Email.ToLower()))
+            if (string.IsNullOrEmpty(Usuario.Email) || Util.IsAValidEmail(Usuario.Email.ToLower()))
             {
                 await Util.ShowToastAsync("Ingrese un Email Válido");
                 return;
@@ -61,59 +75,26 @@ namespace TecnologicoApp.ViewModels
             Settings.IsAuthenticated = true;
             Settings.Email = Usuario.Email;
             await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
-
-
-
-
-            //List<string> ListaUsuario = new List<string>
-            //{
-            //    "daviquesan@gmail.com",
-            //    "dolvi123@gmail.com",
-            //    "ofalconez1978@gmail.com",
-            //    "d1sanchez@gmail.com",
-            //    "david@istlcg.com",
-            //    "gus@mail.com"
-            //};
-
-            //bool estaEnLaLista = ListaUsuario.Contains(Usuario.Email);
-
-            //if (estaEnLaLista)
-            //{
-            //    
-
-            //}
-            //else
-            //{
-            //    await Util.ShowToastAsync("Correo No Registrado");
-            //}
-
-
-
-            //Settings.IsAuthenticated = true;
-
-
         }
+        
         private async void GotoSignupPageAsync()
         {
-            await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
+            await Shell.Current.GoToAsync(nameof(SignupPage));
         }
         public void OtraPagina()
         {
             string mensaje = $"Bienvenido {Usuario.Email}";
         }
 
-        private bool IsAValidEmail(string email)
-        {
-           
-            return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-        }
+       
         private List<KeyValuePair<string, string>> GetLoginData()
         {
             var result = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("daviquesan@gmail.com", "123456789"),
                 new KeyValuePair<string, string>("dOlivo@gmail.com", "soyFalconez"),
-                new KeyValuePair<string, string>("eFalconez@gmail.com", "soyOlivo")
+                new KeyValuePair<string, string>("eFalconez@gmail.com", "soyOlivo"),
+                new KeyValuePair<string, string>(Settings.RegistroEmail, Settings.RegistroPassword)
             };
             return result;
 

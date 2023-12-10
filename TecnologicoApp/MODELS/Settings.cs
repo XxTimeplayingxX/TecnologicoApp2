@@ -33,6 +33,10 @@ namespace TecnologicoApp.MODELS
             set => Preferences.Default.Set(nameof(RegistroPassword), value);
         }
 
-        //public static bool IsAuthenticated { get; set; }
+        //public static bool IsRegistered
+        //{
+        //    get => Preferences.Default.Get(nameof(IsRegistered), false);
+        //    set => Preferences.Default.Set(nameof(IsRegistered), value);
+        //}
     }
 }

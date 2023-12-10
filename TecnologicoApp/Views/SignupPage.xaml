@@ -3,7 +3,14 @@
     x:Class="TecnologicoApp.Views.SignupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TecnologicoApp.ViewModels"
     Title="SignupPage">
+
+    <ContentPage.BindingContext>
+        <local:SignUpPageViewModel/>
+    </ContentPage.BindingContext>
+
+
     <ScrollView>
         <StackLayout VerticalOptions="Start">
             <Label
@@ -36,24 +43,24 @@
                         WidthRequest="333" />
 
                 </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="Repetir contraseña" TextColor="Black" />
+                    <Entry
+                        x:Name="PasswordEntry2"
+                        HorizontalOptions="StartAndExpand"
+                        IsPassword="True"
+                        Text="{Binding Password2}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+
+                </StackLayout>
             </StackLayout>
             <!--  boton  -->
             <StackLayout Padding="100,10">
                 <Button
                     x:Name="LoginBtn"
-                    Command="{Binding LoginCommand}"
+                    Command="{Binding SaveCommand}"
                     Text="Iniciar" />
-            </StackLayout>
-            <StackLayout>
-                <Label
-                    HorizontalOptions="Center"
-                    Text="registro"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RegisterComand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-
             </StackLayout>
         </StackLayout>
     </ScrollView>

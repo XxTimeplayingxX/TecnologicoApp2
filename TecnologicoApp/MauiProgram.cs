@@ -1,5 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using TecnologicoApp.Services;
+using TecnologicoApp.Services.Interfaces;
+using TecnologicoApp.ViewModels;
+using TecnologicoApp.Views;
 
 namespace TecnologicoApp
 {
@@ -20,7 +24,9 @@ namespace TecnologicoApp
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<ISignUpSignInService, SignUpSignInService>();
             return builder.Build();
         }
     }
